@@ -1,0 +1,45 @@
+"GameInfo"
+{
+	game	"TF2 TC Public"
+	type multiplayer_only
+
+	FileSystem
+	{
+		SteamAppId 440
+
+		SearchPaths
+		{
+			// --- CHANGE: Load this server's custom content first ---
+			game+mod |gameinfo_path|.
+
+			// --- CHANGE: Use shared tf2_base installation instead of local tf/ ---
+			game+mod+custom_mod |gameinfo_path|../tf2_base/tf/custom/*
+			game_lv              |gameinfo_path|../tf2_base/tf/tf2_lv.vpk
+			game+mod             |gameinfo_path|../tf2_base/tf/tf2_textures.vpk
+			game+mod             |gameinfo_path|../tf2_base/tf/tf2_sound_vo_english.vpk
+			game+mod             |gameinfo_path|../tf2_base/tf/tf2_sound_misc.vpk
+			game+mod+vgui        |gameinfo_path|../tf2_base/tf/tf2_misc.vpk
+
+			// Vanilla HL2 + Platform (unchanged)
+			game                 |all_source_engine_paths|hl2/hl2_textures.vpk
+			game                 |all_source_engine_paths|hl2/hl2_sound_vo_english.vpk
+			game                 |all_source_engine_paths|hl2/hl2_sound_misc.vpk
+			game+vgui            |all_source_engine_paths|hl2/hl2_misc.vpk
+			platform+vgui        |all_source_engine_paths|platform/platform_misc.vpk
+
+			// --- CHANGE: Writes go to this server folder ---
+			mod+mod_write+default_write_path |gameinfo_path|.
+			game+game_write                  |gameinfo_path|../tf2_base/tf
+
+			// --- CHANGE: Binaries live in shared installation ---
+			gamebin                           |gameinfo_path|../tf2_base/tf/bin
+
+			// Vanilla HL2 + platform loose files
+			game     |all_source_engine_paths|hl2
+			platform |all_source_engine_paths|platform
+
+			// --- CHANGE: Downloads stored in shared tf2_base ---
+			game+download |gameinfo_path|../tf2_base/tf/download
+		}
+	}
+}
